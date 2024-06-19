@@ -1,0 +1,9 @@
+# crud-app (backend)
+TODO:
+- [ ] Validation 
+
+- [ ] Logger 
+
+- [ ] Custom errors
+
+- [ ] CORS middleware
