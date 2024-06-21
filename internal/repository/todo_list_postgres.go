@@ -1,6 +1,7 @@
 package repository
 
 import (
+	"errors"
 	"fmt"
 	"strings"
 
@@ -103,9 +104,19 @@ func (r *TodoListPostgres) UpdateByID(userID int64, listID int64, input todo.Upd
 	logrus.Debugf("updateQuery: %s\n", query)
 	logrus.Debugf("args: %v\n", args)
 
-	_, err := r.db.Exec(query, args...)
+	res, err := r.db.Exec(query, args...)
+	if err != nil {
+		return err
+	}
+	rowsAffected, err := res.RowsAffected()
+	if err != nil {
+		return err
+	}
+	if rowsAffected == 0 {
+		return errors.New("no rows affected")
+	}
 
-	return err
+	return nil
 }
 
 func (r *TodoListPostgres) DeleteListByID(userID int64, listID int64) error {
@@ -114,7 +125,17 @@ func (r *TodoListPostgres) DeleteListByID(userID int64, listID int64) error {
 		todoListsTable,
 		usersListsTable,
 	)
-	_, err := r.db.Exec(query, userID, listID)
+	res, err := r.db.Exec(query, userID, listID)
+	if err != nil {
+		return err
+	}
+	rowsAffected, err := res.RowsAffected()
+	if err != nil {
+		return err
+	}
+	if rowsAffected == 0 {
+		return errors.New("no rows affected")
+	}
 
-	return err
+	return nil
 }

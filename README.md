@@ -4,4 +4,4 @@ TODO:
 - [ ] Logger 
 - [ ] Custom errors
 - [ ] CORS middleware
-- [ ] Fix UpdateByID repository
+- [x] Fix UpdateByID, DeleteByID repos (no affected rows)
