@@ -24,3 +24,15 @@ func (s *TodoListService) GetAllLists(userID int64) ([]todo.TodoList, error) {
 func (s *TodoListService) GetListByID(userID int64, listID int64) (todo.TodoList, error) {
 	return s.repos.GetListByID(userID, listID)
 }
+
+func (s *TodoListService) UpdateByID(userID int64, listID int64, input todo.UpdateListInput) error {
+	if err := input.Validate(); err != nil {
+		return err
+	}
+
+	return s.repos.UpdateByID(userID, listID, input)
+}
+
+func (s *TodoListService) DeleteListByID(userID int64, listID int64) error {
+	return s.repos.DeleteListByID(userID, listID)
+}
