@@ -1,7 +1,8 @@
 # crud-app
 TODO:
+- [x] Fix UpdateByID, DeleteByID repos (no affected rows)
+- [x] Logger 
 - [ ] Validation 
-- [ ] Logger 
 - [ ] Custom errors
 - [ ] CORS middleware
-- [x] Fix UpdateByID, DeleteByID repos (no affected rows)
+- [ ] Swagger docs
